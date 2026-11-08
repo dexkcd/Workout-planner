@@ -1,0 +1,1010 @@
+{
+  "_about": "Seed values for Formkoll v1, taken from docs/plan.md. Recipe gram amounts marked approximate are starting estimates the user will adjust in the app.",
+  "meta": {
+    "timezone": "Europe/Stockholm",
+    "week_starts_on": "monday",
+    "units": {
+      "mass": "kg",
+      "length": "cm",
+      "energy": "kcal",
+      "food": "g",
+      "currency": "SEK"
+    },
+    "plan_start": "2026-11-09",
+    "start_weight_kg": 88.0,
+    "goal_weight_range_kg": [
+      75,
+      80
+    ],
+    "projection_kg_per_week": 0.5,
+    "projection_milestones": [
+      {
+        "date": "2026-12-21",
+        "kg": 85.0
+      },
+      {
+        "date": "2027-01-04",
+        "kg": 85.0
+      },
+      {
+        "date": "2027-03-01",
+        "kg": 81.0
+      },
+      {
+        "date": "2027-04-12",
+        "kg": 78.0
+      }
+    ],
+    "diet_break": {
+      "from": "2026-12-21",
+      "to": "2027-01-04"
+    },
+    "deload_every_n_weeks": 4,
+    "work_pattern": {
+      "office_days": [
+        "mon",
+        "tue",
+        "wed",
+        "fri"
+      ],
+      "work_from_home": "thu"
+    }
+  },
+  "targets": [
+    {
+      "effective_from": "2026-11-09",
+      "day_type": "training",
+      "kcal": 2400,
+      "protein_g": 160,
+      "carbs_g": 280,
+      "fat_g": 70
+    },
+    {
+      "effective_from": "2026-11-09",
+      "day_type": "rest",
+      "kcal": 2000,
+      "protein_g": 160,
+      "carbs_g": 180,
+      "fat_g": 70
+    },
+    {
+      "effective_from": "2026-11-09",
+      "day_type": "break",
+      "kcal": 2750,
+      "protein_g": 160,
+      "carbs_g": null,
+      "fat_g": null
+    }
+  ],
+  "adjustment_rules": {
+    "exclude_week_1_from_pace": true,
+    "too_slow": {
+      "pace_below_kg_per_week": 0.3,
+      "consecutive_weeks": 2,
+      "suggest": "Cut 150 kcal from rest-day carbs, or add 2,000 steps a day",
+      "kcal_delta": {
+        "rest": -150
+      }
+    },
+    "too_fast": {
+      "pace_above_kg_per_week": 1.0,
+      "consecutive_weeks": 2,
+      "from_week": 3,
+      "suggest": "Add 150–200 kcal on training days",
+      "kcal_delta": {
+        "training": 150
+      }
+    },
+    "under_recovered": {
+      "condition": "main lift or hardest grade below its 3-week best AND check-in sleep or energy <= 2",
+      "suggest": "Add 200 kcal on training days and take a deload week",
+      "kcal_delta": {
+        "training": 200
+      },
+      "deload": true
+    },
+    "recomposition": {
+      "condition": "waist down >= 1 cm over 2 weeks while weekly average weight is flat",
+      "suggest": "Keep going, you're adding muscle"
+    }
+  },
+  "locations": [
+    {
+      "key": "klattercentret_telefonplan",
+      "name": "Klättercentret Telefonplan",
+      "address": "Tellusgången 22–24, Hägersten",
+      "notes": "About 350 m from Telefonplan T-bana. Bus home at 18:40, so wrap up by 18:25."
+    },
+    {
+      "key": "kanalhallen",
+      "name": "Kanalhallen",
+      "address": "Skansbrogatan 5, Stockholm",
+      "notes": "In the Folksam building by Skanstull T-bana; enter through Friskis & Svettis."
+    },
+    {
+      "key": "f247_hotorget",
+      "name": "Fitness24Seven Hötorget",
+      "address": "Sergelgatan 12, Stockholm",
+      "notes": "Near the office at Kungsgatan 35; for lunchtime sessions. Address from a third-party listing, so verify it."
+    },
+    {
+      "key": "f247_sodertalje_centrum",
+      "name": "Fitness24Seven Södertälje Centrum",
+      "address": null,
+      "notes": "Near home; for evening and weekend sessions."
+    }
+  ],
+  "session_types": [
+    "climb_hard",
+    "climb_volume",
+    "gym_a",
+    "gym_b",
+    "gym_full",
+    "frisbee",
+    "walk",
+    "rest"
+  ],
+  "schedule_templates": {
+    "base": [
+      {
+        "weekday": "mon",
+        "session_type": "climb_hard",
+        "title": "Bouldering 1: hard problems",
+        "start": "16:45",
+        "end": "18:25",
+        "location": "klattercentret_telefonplan",
+        "notes": "Leave Kungsgatan ~16:15 (red line from T-Centralen), bus 18:40"
+      },
+      {
+        "weekday": "tue",
+        "session_type": "gym_a",
+        "title": "Gym A: strength",
+        "start": null,
+        "end": null,
+        "location": "f247_hotorget",
+        "notes": "Lunch at Hötorget, or ~18:30 at Södertälje Centrum. Heaviest leg day, two days before frisbee"
+      },
+      {
+        "weekday": "wed",
+        "session_type": "climb_volume",
+        "title": "Bouldering 2: volume and technique",
+        "start": "16:45",
+        "end": "18:25",
+        "location": "klattercentret_telefonplan",
+        "notes": "Moderate effort, frisbee tomorrow"
+      },
+      {
+        "weekday": "thu",
+        "session_type": "frisbee",
+        "title": "Ultimate frisbee",
+        "start": "21:00",
+        "end": "22:30",
+        "location": "kanalhallen",
+        "notes": "Work from home. Lunch walk in daylight, dinner 18:00, leave ~20:00"
+      },
+      {
+        "weekday": "fri",
+        "session_type": "rest",
+        "title": "Rest",
+        "start": null,
+        "end": null,
+        "location": null,
+        "notes": "Early night after frisbee"
+      },
+      {
+        "weekday": "sat",
+        "session_type": "gym_b",
+        "title": "Gym B: power and conditioning",
+        "start": "11:00",
+        "end": "12:00",
+        "location": "f247_sodertalje_centrum",
+        "notes": "Late morning"
+      },
+      {
+        "weekday": "sun",
+        "session_type": "walk",
+        "title": "Rest and a long walk",
+        "start": null,
+        "end": null,
+        "location": null,
+        "notes": "60–90 min outdoors in daylight. Batch-cook for the week"
+      }
+    ],
+    "tuesday_frisbee": [
+      {
+        "weekday": "mon",
+        "session_type": "climb_hard",
+        "title": "Bouldering 1: hard problems",
+        "start": "16:45",
+        "end": "18:25",
+        "location": "klattercentret_telefonplan",
+        "notes": "As usual"
+      },
+      {
+        "weekday": "tue",
+        "session_type": "frisbee",
+        "title": "Ultimate frisbee",
+        "start": "21:00",
+        "end": "22:30",
+        "location": "kanalhallen",
+        "notes": "Replaces Gym A. Dinner near work 18:00–18:30, small snack ~20:00"
+      },
+      {
+        "weekday": "wed",
+        "session_type": "rest",
+        "title": "Rest (or 60 min easy technique climbing)",
+        "start": null,
+        "end": null,
+        "location": null,
+        "notes": "No hard problems"
+      },
+      {
+        "weekday": "thu",
+        "session_type": "frisbee",
+        "title": "Ultimate frisbee",
+        "start": "21:00",
+        "end": "22:30",
+        "location": "kanalhallen",
+        "notes": "As usual"
+      },
+      {
+        "weekday": "fri",
+        "session_type": "rest",
+        "title": "Rest",
+        "start": null,
+        "end": null,
+        "location": null,
+        "notes": ""
+      },
+      {
+        "weekday": "sat",
+        "session_type": "gym_full",
+        "title": "Gym: full body",
+        "start": "11:00",
+        "end": "12:00",
+        "location": "f247_sodertalje_centrum",
+        "notes": "First 4 of Gym A, then box jumps and bike sprints from Gym B"
+      },
+      {
+        "weekday": "sun",
+        "session_type": "walk",
+        "title": "Rest and a long walk",
+        "start": null,
+        "end": null,
+        "location": null,
+        "notes": ""
+      }
+    ],
+    "tuesday_frisbee_guidance": "Keep double-frisbee weeks to about two a month for the first six weeks."
+  },
+  "exercises": [
+    {
+      "key": "trap_bar_deadlift",
+      "name": "Trap-bar deadlift",
+      "alt": "Back squat",
+      "category": "lower",
+      "equipment": "barbell",
+      "increment_kg": 2.5,
+      "why": "Strength for sprinting and jumping"
+    },
+    {
+      "key": "bulgarian_split_squat",
+      "name": "Bulgarian split squat",
+      "category": "lower",
+      "equipment": "dumbbells",
+      "increment_kg": 2,
+      "why": "Single-leg strength for cuts"
+    },
+    {
+      "key": "db_bench_press",
+      "name": "Dumbbell bench press",
+      "category": "push",
+      "equipment": "dumbbells",
+      "increment_kg": 2,
+      "why": "Pushing, to balance climbing shoulders"
+    },
+    {
+      "key": "nordic_hamstring_curl",
+      "name": "Nordic hamstring curl",
+      "alt": "Lying leg curl",
+      "category": "lower",
+      "equipment": "bodyweight",
+      "increment_kg": 0,
+      "why": "Protects against hamstring strains"
+    },
+    {
+      "key": "half_kneeling_press",
+      "name": "Half-kneeling one-arm overhead press",
+      "category": "push",
+      "equipment": "dumbbell",
+      "increment_kg": 2,
+      "why": "Shoulder health"
+    },
+    {
+      "key": "copenhagen_plank",
+      "name": "Copenhagen plank",
+      "category": "core",
+      "equipment": "bench",
+      "increment_kg": 0,
+      "why": "Protects against groin strains"
+    },
+    {
+      "key": "calf_raise",
+      "name": "Calf raise, straight knee and bent knee",
+      "category": "lower",
+      "equipment": "machine_or_dumbbell",
+      "increment_kg": 2.5,
+      "why": "Achilles and ankles for court sprints"
+    },
+    {
+      "key": "box_jump",
+      "name": "Box jump",
+      "alt": "Broad jump",
+      "category": "power",
+      "equipment": "box",
+      "increment_kg": 0,
+      "why": "Explosiveness. Stop before the jumps get slower"
+    },
+    {
+      "key": "romanian_deadlift",
+      "name": "Romanian deadlift",
+      "category": "lower",
+      "equipment": "barbell",
+      "increment_kg": 2.5,
+      "why": "Hamstrings and hips"
+    },
+    {
+      "key": "lateral_lunge",
+      "name": "Lateral lunge",
+      "category": "lower",
+      "equipment": "dumbbells",
+      "increment_kg": 2,
+      "why": "Side-to-side cutting"
+    },
+    {
+      "key": "push_up",
+      "name": "Push-ups",
+      "alt": "Dips",
+      "category": "push",
+      "equipment": "bodyweight",
+      "increment_kg": 0,
+      "why": "Pushing; add weight when easy"
+    },
+    {
+      "key": "pallof_press",
+      "name": "Pallof press",
+      "category": "core",
+      "equipment": "cable_or_band",
+      "increment_kg": 0,
+      "why": "Core control for throwing and marking"
+    },
+    {
+      "key": "band_external_rotation",
+      "name": "Band external rotation",
+      "category": "prehab",
+      "equipment": "band",
+      "increment_kg": 0,
+      "why": "Rotator cuff for climbing"
+    },
+    {
+      "key": "reverse_wrist_curl",
+      "name": "Reverse wrist curl",
+      "category": "prehab",
+      "equipment": "dumbbell",
+      "increment_kg": 0,
+      "why": "Elbows for climbing"
+    },
+    {
+      "key": "bike_sprints",
+      "name": "Bike or rower sprints",
+      "category": "conditioning",
+      "equipment": "bike_or_rower",
+      "increment_kg": 0,
+      "why": "Fitness for repeated sprints, like back-to-back points"
+    }
+  ],
+  "workouts": {
+    "warm_up": "8 min: 4 min bike or rower; leg swings, deep lunge with rotation, hip circles; 15 band pull-aparts; 2 light ramp-up sets of the first lift",
+    "effort": "End every set with about 2 reps in reserve",
+    "gym_a": [
+      {
+        "exercise": "trap_bar_deadlift",
+        "sets": 4,
+        "rep_min": 5,
+        "rep_max": 5,
+        "unit": "reps"
+      },
+      {
+        "exercise": "bulgarian_split_squat",
+        "sets": 3,
+        "rep_min": 8,
+        "rep_max": 8,
+        "unit": "reps",
+        "per_side": true
+      },
+      {
+        "exercise": "db_bench_press",
+        "sets": 3,
+        "rep_min": 8,
+        "rep_max": 8,
+        "unit": "reps"
+      },
+      {
+        "exercise": "nordic_hamstring_curl",
+        "sets": 3,
+        "rep_min": 4,
+        "rep_max": 6,
+        "unit": "reps",
+        "note": "Slow on the way down"
+      },
+      {
+        "exercise": "half_kneeling_press",
+        "sets": 3,
+        "rep_min": 8,
+        "rep_max": 8,
+        "unit": "reps",
+        "per_side": true
+      },
+      {
+        "exercise": "copenhagen_plank",
+        "sets": 3,
+        "rep_min": 20,
+        "rep_max": 30,
+        "unit": "seconds",
+        "per_side": true
+      },
+      {
+        "exercise": "calf_raise",
+        "sets": 2,
+        "rep_min": 12,
+        "rep_max": 12,
+        "unit": "reps",
+        "note": "12 straight-knee and 12 bent-knee"
+      }
+    ],
+    "gym_b": [
+      {
+        "exercise": "box_jump",
+        "sets": 4,
+        "rep_min": 3,
+        "rep_max": 3,
+        "unit": "reps",
+        "note": "Full rest between sets"
+      },
+      {
+        "exercise": "romanian_deadlift",
+        "sets": 3,
+        "rep_min": 8,
+        "rep_max": 8,
+        "unit": "reps"
+      },
+      {
+        "exercise": "lateral_lunge",
+        "sets": 3,
+        "rep_min": 6,
+        "rep_max": 6,
+        "unit": "reps",
+        "per_side": true
+      },
+      {
+        "exercise": "push_up",
+        "sets": 3,
+        "rep_min": 8,
+        "rep_max": 12,
+        "unit": "reps"
+      },
+      {
+        "exercise": "pallof_press",
+        "sets": 3,
+        "rep_min": 10,
+        "rep_max": 10,
+        "unit": "reps",
+        "per_side": true
+      },
+      {
+        "exercise": "band_external_rotation",
+        "sets": 2,
+        "rep_min": 15,
+        "rep_max": 15,
+        "unit": "reps"
+      },
+      {
+        "exercise": "reverse_wrist_curl",
+        "sets": 2,
+        "rep_min": 15,
+        "rep_max": 15,
+        "unit": "reps"
+      },
+      {
+        "exercise": "bike_sprints",
+        "sets": 8,
+        "rep_min": 20,
+        "rep_max": 20,
+        "unit": "seconds",
+        "note": "20 s hard, 70 s easy"
+      }
+    ],
+    "gym_full": [
+      {
+        "exercise": "trap_bar_deadlift",
+        "sets": 4,
+        "rep_min": 5,
+        "rep_max": 5,
+        "unit": "reps"
+      },
+      {
+        "exercise": "bulgarian_split_squat",
+        "sets": 3,
+        "rep_min": 8,
+        "rep_max": 8,
+        "unit": "reps",
+        "per_side": true
+      },
+      {
+        "exercise": "db_bench_press",
+        "sets": 3,
+        "rep_min": 8,
+        "rep_max": 8,
+        "unit": "reps"
+      },
+      {
+        "exercise": "nordic_hamstring_curl",
+        "sets": 3,
+        "rep_min": 4,
+        "rep_max": 6,
+        "unit": "reps"
+      },
+      {
+        "exercise": "box_jump",
+        "sets": 4,
+        "rep_min": 3,
+        "rep_max": 3,
+        "unit": "reps"
+      },
+      {
+        "exercise": "bike_sprints",
+        "sets": 8,
+        "rep_min": 20,
+        "rep_max": 20,
+        "unit": "seconds",
+        "note": "20 s hard, 70 s easy"
+      }
+    ]
+  },
+  "climbing": {
+    "rules": [
+      "At least 48 hours between climbing sessions",
+      "No hangboard training while in a calorie deficit",
+      "Finger pain flag: 3+ days off climbing, no crimps for a week after"
+    ],
+    "warm_up": "15–20 min: easy traverse or 6–8 problems well below max, working up the grades; arm circles and band pull-aparts; open-hand grips before small crimps",
+    "climb_hard": {
+      "duration_min": 100,
+      "main": "45–60 min on 3–5 problems at or near the hardest grade; 3–5 attempts each; 3–4 min rest between attempts",
+      "finish": "2 × 10 push-ups, 2 × 8 hanging knee raises, forearm and chest stretch"
+    },
+    "climb_volume": {
+      "duration_min": 90,
+      "alternate_weeks": [
+        "technique: repeat problems 2–3 grades below max with one focus (silent feet, flagging, hips to the wall)",
+        "volume: 4×4s, 4 problems back to back, 4 rounds, 3–4 min rest"
+      ],
+      "note": "Stop while still sharp; frisbee is the next day"
+    },
+    "grade_scale": "font"
+  },
+  "meal_slots": [
+    {
+      "key": "morning",
+      "label": "Morning (optional)",
+      "default_time": "10:30"
+    },
+    {
+      "key": "lunch",
+      "label": "Lunch",
+      "default_time": "11:30"
+    },
+    {
+      "key": "afternoon",
+      "label": "Afternoon",
+      "default_time": "15:30"
+    },
+    {
+      "key": "dinner",
+      "label": "Dinner",
+      "default_time": "19:30"
+    },
+    {
+      "key": "evening",
+      "label": "Evening",
+      "default_time": "21:30"
+    },
+    {
+      "key": "flex",
+      "label": "Flex",
+      "default_time": null
+    }
+  ],
+  "meal_templates": [
+    {
+      "key": "office_training_day",
+      "name": "Office training day",
+      "day_type": "training",
+      "weekdays": [
+        "mon",
+        "tue",
+        "wed"
+      ],
+      "total_kcal": 2400,
+      "total_protein_g": 166,
+      "items": [
+        {
+          "slot": "morning",
+          "time": "10:30",
+          "optional": true,
+          "description": "Only if the slowdown hits before lunch: 250 g kvarg or a protein shake. Otherwise eat it in the evening",
+          "kcal": 150,
+          "protein_g": 28
+        },
+        {
+          "slot": "lunch",
+          "time": "11:30",
+          "description": "Dagens lunch, protein first: fish, chicken or meat, a fist of potatoes or rice, half the plate salad. Then a 10 min walk",
+          "kcal": 750,
+          "protein_g": 50
+        },
+        {
+          "slot": "afternoon",
+          "time": "15:30",
+          "description": "Before climbing: a banana, 250 g kvarg and 30 g granola, or a chicken sandwich and a piece of fruit",
+          "kcal": 400,
+          "protein_g": 30
+        },
+        {
+          "slot": "dinner",
+          "time": "19:30",
+          "description": "250 g chicken thigh or 175 g salmon, 300 g cooked rice or potatoes, vegetables, 1 tbsp oil",
+          "kcal": 950,
+          "protein_g": 55
+        },
+        {
+          "slot": "evening",
+          "time": "21:30",
+          "description": "A piece of fruit and a small handful of nuts",
+          "kcal": 150,
+          "protein_g": 3
+        }
+      ]
+    },
+    {
+      "key": "frisbee_thursday",
+      "name": "Frisbee Thursday at home",
+      "day_type": "training",
+      "weekdays": [
+        "thu"
+      ],
+      "total_kcal": 2350,
+      "total_protein_g": 174,
+      "items": [
+        {
+          "slot": "lunch",
+          "time": "12:00",
+          "description": "A batch-cook portion, e.g. chili with a fist of rice, plus a salad. Then the daylight walk",
+          "kcal": 700,
+          "protein_g": 50
+        },
+        {
+          "slot": "afternoon",
+          "time": "15:30",
+          "description": "250 g kvarg, an apple, 2 knäckebröd with cheese",
+          "kcal": 430,
+          "protein_g": 38
+        },
+        {
+          "slot": "dinner",
+          "time": "18:00",
+          "description": "150 g chicken breast or lean mince, ~350 g cooked pasta or rice, vegetables, tomato sauce",
+          "kcal": 850,
+          "protein_g": 55
+        },
+        {
+          "slot": "evening",
+          "time": "20:00",
+          "description": "A banana, or 2 rice cakes with honey",
+          "kcal": 120,
+          "protein_g": 1
+        },
+        {
+          "slot": "evening",
+          "time": "22:45",
+          "description": "On the train: a protein shake, or 250 g kvarg and a piece of fruit",
+          "kcal": 250,
+          "protein_g": 30
+        }
+      ]
+    },
+    {
+      "key": "rest_day",
+      "name": "Rest day",
+      "day_type": "rest",
+      "weekdays": [
+        "fri",
+        "sun"
+      ],
+      "total_kcal": 1980,
+      "total_protein_g": 158,
+      "items": [
+        {
+          "slot": "lunch",
+          "time": "12:00",
+          "description": "Dagens lunch on Friday, or leftovers: protein, a fist of carbs, a big salad",
+          "kcal": 650,
+          "protein_g": 50
+        },
+        {
+          "slot": "afternoon",
+          "time": "15:30",
+          "description": "250 g keso with cucumber or a piece of fruit",
+          "kcal": 280,
+          "protein_g": 30
+        },
+        {
+          "slot": "dinner",
+          "time": "19:00",
+          "description": "250 g sej or torsk, 200 g potatoes, plenty of vegetables, 1 tbsp oil",
+          "kcal": 550,
+          "protein_g": 50
+        },
+        {
+          "slot": "evening",
+          "time": "21:00",
+          "description": "250 g kvarg with berries",
+          "kcal": 200,
+          "protein_g": 28
+        },
+        {
+          "slot": "flex",
+          "time": null,
+          "description": "A fika, a glass of wine, or dark chocolate",
+          "kcal": 300,
+          "protein_g": 0
+        }
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "key": "chili",
+      "name": "Chili with rice",
+      "portions": 8,
+      "grams_are": "approximate",
+      "notes": "Freezes well",
+      "ingredients": [
+        {
+          "food": "Nötfärs 10%",
+          "grams": 1000
+        },
+        {
+          "food": "Kidney beans, drained",
+          "grams": 460
+        },
+        {
+          "food": "Red lentils, dry",
+          "grams": 250
+        },
+        {
+          "food": "Krossade tomater",
+          "grams": 1200
+        },
+        {
+          "food": "Onion",
+          "grams": 300
+        },
+        {
+          "food": "Basmati rice, dry",
+          "grams": 640
+        }
+      ]
+    },
+    {
+      "key": "chicken_tray_bake",
+      "name": "Chicken thigh tray bake",
+      "portions": 6,
+      "grams_are": "approximate",
+      "ingredients": [
+        {
+          "food": "Kycklinglårfilé",
+          "grams": 1500
+        },
+        {
+          "food": "Potatoes",
+          "grams": 2000
+        },
+        {
+          "food": "Carrots",
+          "grams": 500
+        },
+        {
+          "food": "Onion",
+          "grams": 300
+        },
+        {
+          "food": "Rapeseed oil",
+          "grams": 30
+        }
+      ]
+    },
+    {
+      "key": "salmon_potatoes",
+      "name": "Oven-baked salmon or sej, potatoes, broccoli",
+      "portions": 2,
+      "grams_are": "approximate",
+      "notes": "Keeps 2 days; swap salmon for sej on rest days",
+      "ingredients": [
+        {
+          "food": "Salmon fillet",
+          "grams": 350
+        },
+        {
+          "food": "Potatoes",
+          "grams": 500
+        },
+        {
+          "food": "Broccoli",
+          "grams": 300
+        },
+        {
+          "food": "Rapeseed oil",
+          "grams": 10
+        },
+        {
+          "food": "Dill",
+          "grams": 5
+        }
+      ]
+    },
+    {
+      "key": "lentil_curry",
+      "name": "Red lentil and chickpea curry",
+      "portions": 5,
+      "grams_are": "approximate",
+      "notes": "Chicken or tofu",
+      "ingredients": [
+        {
+          "food": "Red lentils, dry",
+          "grams": 250
+        },
+        {
+          "food": "Chickpeas, drained",
+          "grams": 240
+        },
+        {
+          "food": "Chicken breast",
+          "grams": 500
+        },
+        {
+          "food": "Krossade tomater",
+          "grams": 400
+        },
+        {
+          "food": "Coconut milk, light",
+          "grams": 400
+        },
+        {
+          "food": "Basmati rice, dry",
+          "grams": 400
+        }
+      ]
+    },
+    {
+      "key": "overnight_oats",
+      "name": "Overnight oats",
+      "portions": 1,
+      "grams_are": "approximate",
+      "ingredients": [
+        {
+          "food": "Oats",
+          "grams": 70
+        },
+        {
+          "food": "Milk",
+          "grams": 250
+        },
+        {
+          "food": "Kvarg naturell",
+          "grams": 200
+        },
+        {
+          "food": "Frozen berries",
+          "grams": 80
+        }
+      ]
+    }
+  ],
+  "staples": {
+    "protein": [
+      "Kvarg naturell",
+      "Keso",
+      "Protein yoghurt",
+      "Eggs",
+      "Kycklinglårfilé",
+      "Chicken breast",
+      "Nötfärs 10%",
+      "Sej, frozen",
+      "Torsk, frozen",
+      "Salmon",
+      "Canned tuna",
+      "Makrill i tomatsås",
+      "Red lentils",
+      "Kidney beans"
+    ],
+    "carbs": [
+      "Oats",
+      "Potatoes",
+      "Basmati rice",
+      "Wholegrain pasta",
+      "Rye bread",
+      "Knäckebröd",
+      "Bananas",
+      "Apples",
+      "Frozen berries"
+    ],
+    "vegetables": [
+      "Frozen wok mix",
+      "Broccoli",
+      "Carrots",
+      "White cabbage",
+      "Red cabbage",
+      "Tomatoes",
+      "Cucumber",
+      "Onions"
+    ],
+    "fats": [
+      "Rapeseed oil",
+      "Olive oil",
+      "Nuts",
+      "Hard cheese"
+    ]
+  },
+  "shopping_sections": [
+    "Meat and fish",
+    "Dairy",
+    "Fruit and veg",
+    "Pantry",
+    "Frozen",
+    "Other"
+  ],
+  "reminders": [
+    {
+      "key": "pre_climb_snack",
+      "when": "climb days",
+      "time": "15:30",
+      "text": "Pre-climb snack: banana + 250 g kvarg"
+    },
+    {
+      "key": "weigh_in",
+      "when": [
+        "mon",
+        "wed",
+        "fri",
+        "sun"
+      ],
+      "time": "07:30",
+      "text": "Weigh in after the toilet, before eating"
+    },
+    {
+      "key": "weekly_checkin",
+      "when": [
+        "mon"
+      ],
+      "time": "08:00",
+      "text": "Weekly check-in: sleep, hunger, energy"
+    },
+    {
+      "key": "waist",
+      "when": "every 2 weeks, Monday",
+      "time": "08:00",
+      "text": "Measure your waist at the navel"
+    }
+  ]
+}

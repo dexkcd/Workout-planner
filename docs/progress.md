@@ -17,9 +17,20 @@ Status: done.
 
 ## Milestone 2 — Schedule
 
-Status: in progress.
+Status: done.
+
+- `lib/rules`: `schedule.ts` (weekNumber, isDeloadWeek, diet-break checks, templateKeyFor, generateWeek, mergeStatuses, doneSessionsLostBy, gymTargetSets), `dayType.ts`, `targets.ts` (targetsFor, remaining), `summary.ts` (weekSummary), `meals.ts` (templateForDay, nextMeal). 44 Vitest cases, including both DST weeks and the mockup's week 11.
+- Weeks are materialised on first open (`getOrCreateWeek`) from the base template into `weeks` + `planned_sessions`; the Tuesday-frisbee toggle regenerates the week from the other template and carries statuses over (`setWeekTemplate`).
+- Today: "Week N · day type" eyebrow with deload/diet-break flags, kcal and protein rings (eaten = 0 until Milestone 5), session cards with Done / Skip / Move (bottom sheet with the next days) and Undo, a manual day-type override, "Up next" meal from the seed's meal templates, quick-action tiles.
+- Week: previous/next, "Week N · range · deload next week / deload week / diet break", the toggle, seven rows styled by status with today highlighted, and the summary card (protein and weight show "—" until Milestones 5 and 3).
+- `?date=YYYY-MM-DD&time=HH:MM` overrides the clock outside production or when `FORMKOLL_ALLOW_DATE_OVERRIDE=1`; the Playwright tests use it (`tests/e2e/schedule.spec.ts`, 6 flows).
 
 ## Decisions
+
+- **Toggle after logging.** Switching the Tuesday-frisbee template keeps statuses for sessions that stay on the same date. Done sessions the new template no longer has are kept as extra rows (so the week can show two sessions on a day) and the toggle reports it. Spec is silent on this.
+- **Moving a session** marks the original `moved` (with `moved_to_date`) and plans a copy on the target date; Undo removes the copy. The spec's "Moved" status is kept as the audit trail.
+- **Walk and rest are not "sessions"** in the Week summary, matching the mockup's "2 of 5".
+- **Gym A / Gym B times.** The seed has no time for Gym A (lunch or evening) and 11:00 for Gym B; the Week row shows "Lunch" for Gym A like the mockup.
 
 - **Passkeys in their own table.** The spec lists credentials under `users`; `passkey_credentials` holds one row per device instead.
 - **Day-type override table.** The spec says the user can override the day type by hand but lists no table; `day_type_overrides(date, day_type)` is the 31st table.
@@ -29,6 +40,16 @@ Status: in progress.
 - **Number formatting** follows the mockups (`2,400`), not Swedish grouping.
 - The handoff README is kept as `docs/HANDOFF.md`; the root README describes the app.
 
+## Railway
+
+Created from this session (project `formkoll`, environment `production`):
+
+- Postgres service deployed from the Railway `postgres` template.
+- `web` service (empty, no source yet) with the domain `web-production-f8b67.up.railway.app` on port 3000 and variables `DATABASE_URL` (reference to Postgres), `APP_URL`, `WEBAUTHN_RP_ID`, `AUTH_SECRET` (generated), `OWNER_EMAIL`, `NODE_ENV`.
+- Not done on purpose: connecting the GitHub repository and the first deploy. In the Railway dashboard, point `web` at `dexkcd/Workout-planner` (branch `main` after merge); `railway.json` runs migrations before each deploy. Then seed once with `railway run npm run db:seed`.
+
 ## Open issues
 
-- Railway: project to be created from this session; GitHub source and first deploy are manual steps (see README).
+- Magic-link login fallback (Milestone 6).
+- Serwist vs. the hand-written service worker (Milestone 6).
+- Spec open questions remain as listed in `CLAUDE.md`, with their defaults.

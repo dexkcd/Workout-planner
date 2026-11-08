@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Formkoll design tokens (see CLAUDE.md → Design).
+ * Dark "Nordic winter night" is the default; a light theme is derived from the
+ * same tokens and applied when the system prefers light.
+ */
+:root {
+  --fk-bg: #0e1218;
+  --fk-surface: #171c25;
+  --fk-surface-2: #1f2631;
+  --fk-border: #2b3442;
+  --fk-text: #eef2f7;
+  --fk-muted: #a3aebf;
+  --fk-accent: #7cc4ff;
+  --fk-accent-contrast: #0e1218;
+  --fk-attention: #ffb547;
+  --fk-attention-contrast: #0e1218;
+  --fk-track: #263040;
+  --fk-nav: #12161e;
+  --fk-danger: #ff7b7b;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --fk-bg: #f4f6fa;
+    --fk-surface: #ffffff;
+    --fk-surface-2: #e9eef5;
+    --fk-border: #d4dbe6;
+    --fk-text: #0e1218;
+    --fk-muted: #5b6778;
+    --fk-accent: #1f78c8;
+    --fk-accent-contrast: #ffffff;
+    --fk-attention: #b86e00;
+    --fk-attention-contrast: #ffffff;
+    --fk-track: #dfe6f0;
+    --fk-nav: #ffffff;
+    --fk-danger: #c62828;
+    color-scheme: light;
+  }
+}
+
+/* shadcn/ui semantic variables mapped onto the Formkoll tokens. */
+:root {
+  --background: var(--fk-bg);
+  --foreground: var(--fk-text);
+  --card: var(--fk-surface);
+  --card-foreground: var(--fk-text);
+  --popover: var(--fk-surface);
+  --popover-foreground: var(--fk-text);
+  --primary: var(--fk-accent);
+  --primary-foreground: var(--fk-accent-contrast);
+  --secondary: var(--fk-surface-2);
+  --secondary-foreground: var(--fk-text);
+  --muted: var(--fk-surface-2);
+  --muted-foreground: var(--fk-muted);
+  --accent: var(--fk-surface-2);
+  --accent-foreground: var(--fk-text);
+  --destructive: var(--fk-danger);
+  --border: var(--fk-border);
+  --input: var(--fk-border);
+  --ring: var(--fk-accent);
+  --radius: 0.875rem;
+  --font-sans: "Inter Variable", Inter, system-ui, sans-serif;
+  --font-heading: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Formkoll-named utilities: bg-surface, bg-surface-2, text-dim, bg-attention, … */
+  --color-surface: var(--fk-surface);
+  --color-surface-2: var(--fk-surface-2);
+  --color-dim: var(--fk-muted);
+  --color-attention: var(--fk-attention);
+  --color-attention-foreground: var(--fk-attention-contrast);
+  --color-track: var(--fk-track);
+  --color-nav: var(--fk-nav);
+
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+
+  --radius-sm: 0.625rem;   /* 10px */
+  --radius-md: 0.75rem;    /* 12px */
+  --radius-lg: 0.875rem;   /* 14px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-2xl: 1.125rem;  /* 18px */
+  --radius-3xl: 1.25rem;   /* 20px */
+  --radius-4xl: 1.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100dvh;
+  }
+  h1, h2, h3, .font-heading {
+    font-family: var(--font-heading);
+  }
+  input, button, select, textarea {
+    font: inherit;
+  }
+  /* Numeric inputs and figures use the heading face, like the mockups. */
+  .num {
+    font-family: var(--font-heading);
+    font-variant-numeric: tabular-nums;
+  }
+}

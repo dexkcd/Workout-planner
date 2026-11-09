@@ -46,7 +46,7 @@ Created from this session (project `formkoll`, environment `production`):
 
 - Postgres service deployed from the Railway `postgres` template.
 - `web` service (empty, no source yet) with the domain `web-production-f8b67.up.railway.app` on port 3000 and variables `DATABASE_URL` (reference to Postgres), `APP_URL`, `WEBAUTHN_RP_ID`, `AUTH_SECRET` (generated), `OWNER_EMAIL`, `NODE_ENV`.
-- Not done on purpose: connecting the GitHub repository and the first deploy. In the Railway dashboard, point `web` at `dexkcd/Workout-planner` (branch `main` after merge); `railway.json` runs migrations before each deploy. Then seed once with `railway run npm run db:seed`.
+- `web` is connected to `dexkcd/Workout-planner`, branch `ccr-43ad6531-ywrzh8` for now; switch it to `main` once the branch is merged. The pre-deploy command runs `db:migrate` and then the idempotent `db:seed`, so plan data from `seed/plan.json` is applied on every deploy and no manual seeding is needed.
 
 ## Open issues
 

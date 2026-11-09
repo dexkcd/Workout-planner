@@ -46,7 +46,7 @@ scripts/        migrate, seed, make-icons         tests/e2e/      Playwright
 
 ## Railway
 
-One `web` service (this repo) plus a Postgres service; a cron service arrives in Milestone 6. `railway.json` sets the builder, the pre-deploy migration command, the start command and the `/api/health` health check.
+One `web` service (this repo) plus a Postgres service; a cron service arrives in Milestone 6. `railway.json` sets the builder, the pre-deploy command (migrate, then seed), the start command and the `/api/health` health check.
 
 Variables on `web`:
 
@@ -58,7 +58,7 @@ Variables on `web`:
 | `AUTH_SECRET` | 32+ random bytes, e.g. `openssl rand -base64 48` |
 | `OWNER_EMAIL` | the one user's email |
 
-After the first deploy, seed once: `railway run npm run db:seed` (safe to re-run). Later milestones add the S3, Anthropic, YouTube, agent-token and VAPID variables listed in `.env.example`.
+The pre-deploy command runs the migrations and then the idempotent seed, so a deploy is all that is needed. Later milestones add the S3, Anthropic, YouTube, agent-token and VAPID variables listed in `.env.example`.
 
 ## Attribution
 

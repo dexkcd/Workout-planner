@@ -46,7 +46,10 @@ Created from this session (project `formkoll`, environment `production`):
 
 - Postgres service deployed from the Railway `postgres` template.
 - `web` service (empty, no source yet) with the domain `web-production-f8b67.up.railway.app` on port 3000 and variables `DATABASE_URL` (reference to Postgres), `APP_URL`, `WEBAUTHN_RP_ID`, `AUTH_SECRET` (generated), `OWNER_EMAIL`, `NODE_ENV`.
-- `web` is connected to `dexkcd/Workout-planner`, branch `ccr-43ad6531-ywrzh8` for now; switch it to `main` once the branch is merged. The pre-deploy command runs `db:migrate` and then the idempotent `db:seed`, so plan data from `seed/plan.json` is applied on every deploy and no manual seeding is needed.
+- `web` is connected to `dexkcd/Workout-planner`, branch `ccr-43ad6531-ywrzh8` for now; switch it to `main` once the branch is merged. Live at https://web-production-f8b67.up.railway.app (health, login and manifest verified from this session).
+- Migrations and the idempotent seed run both as the pre-deploy command and at the start of the start command (`railway.json`). The first deploys came up with an empty database because the pre-deploy step did not run on redeploys of an older snapshot; running it from the start command as well makes every container start self-healing. Config as code in `railway.json` overrides the dashboard, so change it there.
+- `PORT=3000` is set so the app listens on the port the public domain targets.
+- Both services run in `asia-southeast1` (Singapore), Railway's default for this workspace. Moving them to a European region before real use is a one-line change in the dashboard.
 
 ## Open issues
 
